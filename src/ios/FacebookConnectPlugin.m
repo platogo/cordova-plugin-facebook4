@@ -45,7 +45,7 @@
         //launchOptions is nil when not start because of notification or url open
         launchOptions = [NSDictionary dictionary];
     }
-    
+
     [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
 }
 
@@ -140,7 +140,7 @@
     if ([command.arguments count] > 0) {
         permissions = command.arguments;
     }
-    
+
     // this will prevent from being unable to login after updating plugin or changing permissions
     // without refreshing there will be a cache problem. This simple call should fix the problems
     [FBSDKAccessToken refreshCurrentAccessToken:nil];
@@ -299,7 +299,13 @@
 
         NSString *filters = params[@"filters"];
         if (!filters) {
-            content.filters = FBSDKGameRequestFilterNone;
+            NSArray *suggestions = params[@"suggestions"];
+
+            if (suggestions) {
+                content.recipientSuggestions = suggestions;
+            } else {
+                content.filters = FBSDKGameRequestFilterNone;
+            }
         } else if ([filters isEqualToString:@"app_users"]) {
             content.filters = FBSDKGameRequestFilterAppUsers;
         } else if ([filters isEqualToString:@"app_non_users"]) {
@@ -480,11 +486,11 @@
 
 - (UIViewController*) topMostController {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
+
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
     }
-    
+
     return topController;
 }
 
@@ -654,7 +660,7 @@
                                      messageAsString:[NSString stringWithFormat:@"Error: %@", error.description]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.dialogCallbackId];
     self.dialogCallbackId = nil;
-    
+
 }
 
 

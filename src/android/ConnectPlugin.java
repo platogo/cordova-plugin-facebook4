@@ -48,6 +48,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
@@ -330,7 +331,7 @@ public class ConnectPlugin extends CordovaPlugin {
                     AppEventsLogger.activateApp(cordova.getActivity());
                 }
             });
-            
+
             return true;
         }
         return false;
@@ -458,6 +459,8 @@ public class ConnectPlugin extends CordovaPlugin {
                 } catch (IllegalArgumentException e) {
                     Log.w(TAG, "Discarding invalid argument filters");
                 }
+            } else if (params.containsKey("suggestions")) {
+                builder.setSuggestions(Arrays.asList(params.get("suggestions").split("\\s*,\\s*")));
             }
 
             // Set up the activity result callback to this class
