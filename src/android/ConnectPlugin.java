@@ -308,7 +308,7 @@ public class ConnectPlugin extends CordovaPlugin {
                 callbackContext.error("Invalid arguments");
                 return true;
             }
-            int value = args.getInt(0);
+            double value = args.getDouble(0);
             String currency = args.getString(1);
             logger.logPurchase(BigDecimal.valueOf(value), Currency.getInstance(currency));
             callbackContext.success();
