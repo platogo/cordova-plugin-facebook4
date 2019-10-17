@@ -160,6 +160,10 @@
           </array>
         </config-file>
 
+        <!-- Make it work with Cordova iOS < 5 - https://github.com/jeduan/cordova-plugin-facebook4/issues/795#issuecomment-525291796 -->
+        <framework src="FBSDKCoreKit" type="podspec" spec="5.7.0" />
+        <framework src="FBSDKLoginKit" type="podspec" spec="5.7.0" />
+        <framework src="FBSDKShareKit" type="podspec" spec="5.7.0" />
         <!-- Facebook SDK -->
         <podspec>
             <config>
