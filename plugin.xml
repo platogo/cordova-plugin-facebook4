@@ -163,7 +163,7 @@
         <!-- Facebook SDK -->
         <podspec>
             <config>
-                <source url="https://cdn.cocoapods.org/"/>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
             </config>
             <pods use-frameworks="true">
                 <pod name="FBSDKCoreKit" spec="5.15.0"/>
