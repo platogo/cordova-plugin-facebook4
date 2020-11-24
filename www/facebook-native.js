@@ -1,5 +1,9 @@
 var exec = require('cordova/exec')
 
+exports.enableAutoTrackings = function enableAutoTrackings (s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'enableAutoTrackings', [])
+}
+    
 exports.getLoginStatus = function getLoginStatus (s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'getLoginStatus', [])
 }

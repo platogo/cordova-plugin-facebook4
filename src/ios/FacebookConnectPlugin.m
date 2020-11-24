@@ -42,6 +42,18 @@
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
+- (void)enableAutoTrackings:(CDVInvokedUrlCommand *)command {
+    NSLog(@"Facebook: Enable AutoLogEvents and AdvertiserIDCollection");
+    
+    [FBSDKSettings setAutoLogAppEventsEnabled:YES];
+    [FBSDKSettings setAdvertiserIDCollectionEnabled:YES];
+
+    
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+
 - (void) applicationDidFinishLaunching:(NSNotification *) notification {
     NSDictionary* launchOptions = notification.userInfo;
     if (launchOptions == nil) {

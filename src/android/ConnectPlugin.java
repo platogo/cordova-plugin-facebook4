@@ -262,6 +262,12 @@ public class ConnectPlugin extends CordovaPlugin {
             callbackContext.success(getResponse());
             return true;
 
+        } else if (action.equals("enableAutoTrackings")) {
+            FacebookSdk.setAutoLogAppEventsEnabled(true);
+            FacebookSdk.setAdvertiserIDCollectionEnabled(true);
+
+            callbackContext.success();
+            return true;
         } else if (action.equals("getAccessToken")) {
             if (hasAccessToken()) {
                 callbackContext.success(AccessToken.getCurrentAccessToken().getToken());
