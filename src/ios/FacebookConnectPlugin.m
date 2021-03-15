@@ -39,8 +39,8 @@
                                              selector:@selector(applicationDidBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                         selector:@selector(handleOpenURLWithAppSourceAndAnnotation:) 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(handleOpenURLWithAppSourceAndAnnotation:)
                                              name:CDVPluginHandleOpenURLWithAppSourceAndAnnotationNotification object:nil];
 }
 
@@ -72,6 +72,14 @@
 }
 
 #pragma mark - Cordova commands
+
+- (void)getAdvertiserId:(CDVInvokedUrlCommand *)command {
+    NSString *advertiserID = [FBSDKAppEventsUtility advertiserID];
+    
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                                  messageAsString: advertiserID];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
 
 - (void)getLoginStatus:(CDVInvokedUrlCommand *)command {
     BOOL force = [[command argumentAtIndex:0] boolValue];

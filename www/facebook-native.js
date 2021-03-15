@@ -1,5 +1,9 @@
 var exec = require('cordova/exec')
 
+exports.getAdvertiserId = function (s, f) {
+    exec(s, f, 'FacebookConnectPlugin', 'getAdvertiserId')
+}
+    
 exports.getLoginStatus = function (force, s, f) {
   if (typeof force === 'function') {
     s = force;

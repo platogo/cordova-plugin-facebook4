@@ -23,6 +23,7 @@ import com.facebook.HttpMethod;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
+import com.facebook.internal.AttributionIdentifiers;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.share.Sharer;
@@ -289,7 +290,9 @@ public class ConnectPlugin extends CordovaPlugin {
             }
             callbackContext.success();
             return true;
-
+        } else if (action.equals("getAdvertiserId")) {
+            getAdvertiserId(args, callbackContext);
+            return true;
         } else if (action.equals("getLoginStatus")) {
             executeGetLoginStatus(args, callbackContext);
             return true;
@@ -683,6 +686,16 @@ public class ConnectPlugin extends CordovaPlugin {
 
         cordova.setActivityResultCallback(this);
         LoginManager.getInstance().reauthorizeDataAccess(cordova.getActivity());
+    }
+
+    private void getAdvertiserId(JSONArray args, CallbackContext callbackContext) {
+        Context context =  cordova.getActivity();
+        AttributionIdentifiers attributionIdentifiers = AttributionIdentifiers.getAttributionIdentifiers(context);
+        String udid = attributionIdentifiers.getAttributionId() != null
+                        ? attributionIdentifiers.getAttributionId()
+                        : attributionIdentifiers.getAndroidAdvertiserId();
+
+        callbackContext.success(udid);
     }
 
     private void executeGetLoginStatus(JSONArray args, CallbackContext callbackContext) {
