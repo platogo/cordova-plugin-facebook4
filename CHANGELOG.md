@@ -1,255 +1,116 @@
-<a name="6.4.0"></a>
-# [6.4.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v6.4.0)
-
-## Fix
-
-* **Android:** add a check to test if the access token is expired in order to fetch a new one if that would be the case ([#853](https://github.com/jeduan/cordova-plugin-facebook4/pull/853))
-
-<a name="6.3.0"></a>
-# [6.3.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v6.3.0)
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v2.1.0) (2021-03-06)
 
 ## Features
 
-* **iOS:** Updating to CocoaPods CDN ([#848](https://github.com/jeduan/cordova-plugin-facebook4/pull/848))
-* **iOS:** Update Facebook iOS SDK v5.15.0 ([Facebook iOS SDK changelog](https://github.com/facebook/facebook-objc-sdk/blob/master/CHANGELOG.md) | Released: January 21 2020)
-* **Android:** Set per default usage of Facebook Android SDK v5.13.0 ([Facebook Android SDK changelog](https://github.com/facebook/facebook-android-sdk/blob/master/CHANGELOG.md) | Released: December 11 2019)
+* Updated the `getLoginStatus` method to add the `force` parameter, which allows for fetching fresh data from Facebook rather than using previously cached login information (closes [#47](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/47))
+* Added new `isDataAccessExpired` and `reauthorizeDataAccess` methods to allow for detecting when data access has expired, and to then request reauthorization from the user (closes [#46](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/46))
 
-Note: I have upgraded the default Facebook Android SDK to v5.13.0 and not to its last available version, v5.15.0, as this most recent version contains a bug (see [facebook-android-sdk#655](https://github.com/facebook/facebook-android-sdk/issues/665)).
+## Bug Fixes
 
-## Docs
+* Updated the `setAutoLogAppEventsEnabled`, `setAdvertiserIDCollectionEnabled`, and `setAdvertiserTrackingEnabled` methods on iOS to properly handle booleans passed in the `enabled` argument
+* Updated the `getAccessToken` and `api` methods on the browser platform to fix an issue that caused errors when the plugin was used before the Facebook SDK was available
 
-* **sample repo**: If you are looking to test the plugin, would like to reproduce a bug or build issues, there is now a demo project for such purpose: [cordova-plugin-facebook4-lab](https://github.com/peterpeterparker/cordova-plugin-facebook4-lab)
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v2.0.0) (2021-02-25)
 
-<a name="6.2.0"></a>
-# [6.2.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v6.2.0)
+## Breaking Changes
 
-## Features
-
-* **iOS:** Update Facebook iOS SDK v5.7.0 ([Facebook iOS SDK changelog](https://github.com/facebook/facebook-objc-sdk/blob/master/CHANGELOG.md) | Released: September 30 2019)
-* **Android:** Set per default usage of Facebook Android SDK v5.5.2 ([Facebook Android SDK changelog](https://github.com/facebook/facebook-android-sdk/blob/master/CHANGELOG.md) | Released: October 4 2019)
-
-## Docs
-
-* Document two known errors related to Cocoapods, Facebook iOS SDK and their related solutions
-
-<a name="6.1.0"></a>
-# [6.1.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v6.1.0)
+* Removed the deprecated `browserInit` method on the browser platform; this method which was previously a no-op is no longer defined (closes [#26](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/26))
+* Dropped support for cordova-android 6 and below (closes [#23](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/23))
+* Dropped support for cordova-ios 4 and below (closes [#24](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/24))
 
 ## Features
 
-* **iOS:** Update Facebook iOS SDK v5.6.0 ([Facebook iOS SDK changelog](https://github.com/facebook/facebook-objc-sdk/blob/master/CHANGELOG.md) | Released: July 15 2019)
-* **Android:** Set per default usage of Facebook Android SDK v5.5.1 ([Facebook Android SDK changelog](https://github.com/facebook/facebook-android-sdk/blob/master/CHANGELOG.md) | Released: July 29 2019)
+* Updated the Facebook SDK to 9.0.0 for Android and 9.0.1 for iOS (closes [#15](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/15))
+* Updated the `login` method to remove unnecessary checks for read/publish permissions; the plugin will no longer prevent developers from requesting read and publish permissions at the same time, and will rely on the Facebook SDK's own internal logic instead [#34](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/pull/34)
+* Updated the `showDialog` method to remove the deprecated caption, description, and picture properties (closes [#28](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/28))
+* Added a new `setAdvertiserTrackingEnabled` method to allow for enabling advertiser tracking on iOS 14+
 
-Thx [Francesco Tonini](https://github.com/francescotonini) for the PR 👍
+## Bug Fixes
 
-<a name="6.0.0"></a>
-# [6.0.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v6.0.0)
-
-## Breaking change
-
-* **iOS:** use the [CocoaPods dependency manager](https://cocoapods.org) in order to satisfy the iOS Facebook SDK library dependencies ([#639](https://github.com/jeduan/cordova-plugin-facebook4/issues/639))
-
-### Notes
-
-See [iOS documentation](https://github.com/jeduan/cordova-plugin-facebook4/tree/master/docs/ios) for some notes about installation with Cocoapods.
-
-## Features
-
-* **iOS:** Update Facebook iOS SDK v5.2.3 ([Facebook iOS SDK changelog](https://github.com/facebook/facebook-objc-sdk/blob/master/CHANGELOG.md) | Released: July 15 2019)
-* **Android:** Set per default usage of Facebook Android SDK v5.2.0 ([Facebook Android SDK changelog](https://github.com/facebook/facebook-android-sdk/blob/master/CHANGELOG.md) | Released: July 29 2019)
-
-<a name="5.0.0"></a>
-# [5.0.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v5.0.0)
-
-## Features
-
-* **iOS:** Update Facebook iOS SDK v5.0.2 ([#751](https://github.com/jeduan/cordova-plugin-facebook4/pull/751) | [Facebook iOS SDK changelog](https://github.com/facebook/facebook-objc-sdk/blob/master/CHANGELOG.md) | Released: June 5 2019)
-* **Android:** Set per default usage of Facebook Android SDK v5.0.20 ([#751](https://github.com/jeduan/cordova-plugin-facebook4/pull/751) | [Facebook Android SDK changelog](https://github.com/facebook/facebook-android-sdk/blob/master/CHANGELOG.md) | Released: June 7 2019)
-
-### Kudos
-Thx [Guy Lando](https://github.com/guylando) for your amazing work and PR 👍
-
-<a name="4.2.1"></a>
-# [4.2.1](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v4.2.1)
-
-## Fix
-
-* **iOS**: fix iOS crash when `enableHybridAppEvents` has already been enabled ([#745](https://github.com/jeduan/cordova-plugin-facebook4/pull/746)) 
-
-### Kudos
-Thx [Regev Brody](https://github.com/regevbr) for the PR 👍
-
-<a name="4.2.0"></a>
-# [4.2.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v4.2.0)
-
-## Features
-
-* **iOS:** Update Facebook iOS SDK v4.40.0 ([#743](https://github.com/jeduan/cordova-plugin-facebook4/issues/743), [#740](https://github.com/jeduan/cordova-plugin-facebook4/issues/740) | [Facebook iOS SDK changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: January 22 2019)
-* **Android:** Set per default usage of Facebook Android SDK v4.40.0 ([#743](https://github.com/jeduan/cordova-plugin-facebook4/issues/743), [#740](https://github.com/jeduan/cordova-plugin-facebook4/issues/740) | [Facebook Android SDK changelog](https://developers.facebook.com/docs/android/change-log-4x) | Released: January 22 2019)
-
-<a name="4.1.0"></a>
-# [4.1.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v4.1.0)
-
-## Features
-
-* **Facebook:** Allow hybrid apps to send AppEvents from the pixel ([#678](https://github.com/jeduan/cordova-plugin-facebook4/issues/678))
-
-### Kudos
-
-Thx [Mehmet Sencer Karadayi](https://github.com/msencer) for the PR 👍
-
-<a name="4.0.0"></a>
-# [4.0.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v4.0.0)
-
-## Features
-
-* **Android:** Support for cordova-android >= v7 without any workaround ([#716](https://github.com/jeduan/cordova-plugin-facebook4/pull/716), [#599](https://github.com/jeduan/cordova-plugin-facebook4/issues/599))
-
-## Breaking change
-
-If you already have the workaround in the `config.xml` of your application, you have to **remove** it respectively you **need** to **remove** the following piece of code of your `config.xml`:
-
-```
-<config-file parent="/resources" target="./res/values/strings.xml">		
-    <string name="fb_app_id">123456789</string>		
-    <string name="fb_app_name">myApplication</string>		
-</config-file>
-```
-
-### Side notes
-
-Also note that this improvements is backwards compatible, if you use cordova-android < v7 you should still be able to use the plugin.
-
-### Kudos
-
-Thank you [Adrian Pascu](https://github.com/adipascu) for the PR and support 👍
-
-<a name="3.2.0"></a>
-# [3.2.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v3.2.0)
-
-## Features
-
-* **iOS:** Update Facebook iOS SDK v4.38.1 ([#725](https://github.com/jeduan/cordova-plugin-facebook4/issues/725) | [Facebook iOS SDK changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: 1st November 2018)
-* **Android:** Set per default usage of Facebook Android SDK v4.38.1 ([#725](https://github.com/jeduan/cordova-plugin-facebook4/issues/725) | [Facebook Android SDK changelog](https://developers.facebook.com/docs/android/change-log-4x) | Released: 1st November 2018)
-
-<a name="3.1.0"></a>
-# [3.1.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v3.1.0)
-
-## Features
-
-* **iOS:** Update Facebook iOS SDK v4.37.0 ([#713](https://github.com/jeduan/cordova-plugin-facebook4/issues/713) | [Facebook iOS SDK changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: 27th September 2018)
-* **Android:** Set per default usage of Facebook Android SDK v4.37.0 ([#713](https://github.com/jeduan/cordova-plugin-facebook4/issues/713) | [Facebook Android SDK changelog](https://developers.facebook.com/docs/android/change-log-4x) | Released: 27th September 2018)
-
-<a name="3.0.0"></a>
-# [3.0.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v3.0.0)
-
-## Features
-
-* **Android:** Update Facebook Android SDK reference to v4.36.0 (drop greedy v4.+ reference) ([#708](https://github.com/jeduan/cordova-plugin-facebook4/issues/708))
-
-### Disclaimer
-
-This release does not contains that much but we bumped up it to a major release because as of now, each release will always be published with a synchronized Facebook SDK version for iOS and for Android 
-
-<a name="2.5.0"></a>
-# [2.5.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.5.0)
-
-## Breaking change
-
-* **Android:** `ANDROID_SDK_VERSION` was renamed to `FACEBOOK_ANDROID_SDK_VERSION` to avoid misunderstood. This variable is use to set the Facebook SDK version for Android not the Android SDK version ([#706](https://github.com/jeduan/cordova-plugin-facebook4/issues/706))
+* Updated the `getAccessToken` method to be consistent on all platforms and return the error message "Session not open." if the user has no current access token
+* Updated the `logout` method to be consistent on all platforms and call the success callback even if the user has no current access token (closes [#20](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/20))
 
 ## Documentation
 
-* **Doc:** Add a note in the `README` regarding the Graph API version which is not set by the plugin itself
+* Updated README to remove outdated information that suggested that Facebook login uses the native Facebook app, which is no longer true on iOS ([#30](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/30))
 
-<a name="2.4.0"></a>
-# [2.4.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.4.0)
+<a name="1.2.1"></a>
+# [1.2.1](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.2.1) (2021-02-18)
 
-## Features
+## Bug Fixes
 
-* **iOS:** Update Facebook iOS SDK v4.36.0 ([e5c3aba](https://github.com/jeduan/cordova-plugin-facebook4/commit/e5c3abafca2fb0fe6651ab4025cb0510735fb66b) | [Facebook changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: 30th August 2018)
+* Fixed an issue that caused the `setAdvertiserIDCollectionEnabled` method to be undefined (closes [#36](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/36))
 
-<a name="2.3.0"></a>
-# [2.3.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.3.0)
-
-## Features
-
-* **iOS:** Update Facebook iOS SDK v4.35.0 ([4bdddc9](https://github.com/jeduan/cordova-plugin-facebook4/commit/4bbddc9938f2b087472757723ede1d037182b9c6) | [Facebook changelog](https://developers.facebook.com/docs/ios/change-log-4x) | Released: 26th July 2018)
-
-<a name="2.2.0"></a>
-# [2.2.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.2.0)
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.2.0) (2021-02-05)
 
 ## Features
 
-* **iOS:** Update Facebook iOS SDK v4.34.0 ([74bccb1](https://github.com/jeduan/cordova-plugin-facebook4/commit/74bccb1a4f8938024002d0f4e681b9a56b1d7f43) | [Facebook changelog](https://developers.facebook.com/docs/ios/change-log-4x))
+* Added the `FACEBOOK_IOS_SDK_VERSION` preference to override the default iOS SDK version
+* Added the `FACEBOOK_ADVERTISER_ID_COLLECTION` preference and a new `setAdvertiserIDCollectionEnabled` method to allow for disabling collection of `advertiser-id` (closes [#22](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/22))
+* Updated the `checkHasCorrectPermissions` method so that it is now supported on all platforms (closes [#25](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/25))
 
-<a name="2.1.0"></a>
-# [2.1.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.1.0)
+## Bug Fixes
 
-## Features
+* Updated the `activateApp` method to use the callbacks passed to it (closes [#18](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/18))
+* Fixed an issue that would cause the `showDialog` method to fail on iOS if the `method` property was set to "apprequests" but the `actionType` property was not defined; `actionType` is now optional on all platforms (closes [#29](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/29))
 
-* **iOS:** Update of the Facebook SDK v4.33.0 for iOS 11 ([#653](https://github.com/jeduan/cordova-plugin-facebook4/issues/653))
+## Documentation
 
-<a name="2.0.1"></a>
-# [2.0.1](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.0.1)
+* Updated README to include `objectID` property in example configuration object for the `checkHasCorrectPermissions` method; `objectID` is required by the Facebook SDK if `actionType` is non-null (and vice versa)
 
-## Bug fixes
+<a name="1.1.1"></a>
+# [1.1.1](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.1.1) (2021-01-27)
 
-* **Android:** Fix null pointer exception leading to app crashing after a second login (flow example: login -> graphApi -> logout -> login -> crash) ([#568](https://github.com/jeduan/cordova-plugin-facebook4/issues/568))
+## Bug Fixes
 
-<a name="2.0.0"></a>
-# [2.0.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v2.0.0)
+* Fixed an issue that caused standard events, e.g. App Launches, to be automatically logged on iOS despite `FACEBOOK_AUTO_LOG_APP_EVENTS` being set to "false" (closes [#16](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/16))
 
-**Breaking change:** As of February 5, 2018, Facebook doesn't support anymore App Invites, therefore these methods have been removed.
- 
-This version introduce also a new optional variable for the Android installation.
-
-## Features
-
-* **iOS:** App Invites support removed ([#645](https://github.com/jeduan/cordova-plugin-facebook4/issues/645))
-
-* **Android:** Add optional installation variable `ANDROID_SDK_VERSION` ([#550](https://github.com/jeduan/cordova-plugin-facebook4/issues/550))([#646](https://github.com/jeduan/cordova-plugin-facebook4/pull/646))
-
-### Side note
-
-I did consider removing the methods for App Invites as a breaking change, even if these weren't already supported from Facebook since months.
-
-I followed the semantic versioning idea the Ionic team recently published in their [blog](https://blog.ionicframework.com/ionic-semantic-versioning-release-schedule-and-lts/)
-
-@peterpeterparker
-
-<a name="1.10.1"></a>
-# [1.10.1](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v1.10.1)
-
-v1.10.1 Fix an issue regarding the versioning (v1.10 was missing in plugin.xml)
-
-<a name="1.10.0"></a>
-# [1.10.0](https://github.com/jeduan/cordova-plugin-facebook4/releases/tag/v1.10.0)
-
-v1.10.0 introduces the last Facebook SDK for iOS
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.1.0) (2021-01-21)
 
 ## Features
 
-* **iOS:** Update of the Facebook SDK v4.31.1 for iOS 11 ([#631](https://github.com/jeduan/cordova-plugin-facebook4/issues/631)) ([#634](https://github.com/jeduan/cordova-plugin-facebook4/pull/634))
+* Added the `FACEBOOK_URL_SCHEME_SUFFIX` preference to allow for specifying a unique URL Suffix for cases where multiple apps use the same Facebook app (closes [#3](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/3))
+* Added the `FACEBOOK_AUTO_LOG_APP_EVENTS` preference and a new `setAutoLogAppEventsEnabled` method to allow for disabling automatic event collection, an important feature for GDPR compliance (closes [#7](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/7))
+* Updated the `api` method to allow for optionally passing an httpMethod (one of "POST" or "DELETE") in Graph API requests (closes [#10](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/10))
+* Updated the `logPurchase` method to accept an optional argument for parameters (closes [#6](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/6))
 
-* **Android:** Add a note in the README and Android Guide about the compatibility with cordova-android >= v7.0.0
+<a name="1.0.2"></a>
+# [1.0.2](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.0.2) (2021-01-16)
 
-### Disclaimer 
+## Bug Fixes
 
-The introduction of the new Facebook SDK for iOS 11 add a new confirm modal to the login flow.
+* Updated the plugin's `api` method to ensure that Graph API requests on iOS work as expected with the most recent version of the Facebook SDK (closes [#12](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/12))
 
-This is the expected design flow defined by `Apple` which `Facebook` implemented. The `cordova-plugin-facebook4` can't modify this behavior (as far as I know, @peterpeterparker).
+<a name="1.0.1"></a>
+# [1.0.1](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.0.1) (2021-01-08)
 
-#### iOS 11.3
+## Bug Fixes
 
-On iOS 11.3, the user won't have the choice anymore between using the Facebook App or using Email/Phone number for Facebook login process but will go straight to the "Facebook - Accept permissions" screen.
+* Updated browser after_prepare hook to properly treat APP_ID as a string (closes [#4](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/4))
 
-Therefore, with this version, the user will still face only one modal during the login flow.
+## Documentation
 
-#### iOS >= 11 < 11.3
+* Updated README to note that special characters such as ampersands must be escaped to avoid build errors (closes [#5](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/5))
 
-Because of the introduction of the new modal, the user might face two modals during the login flow. One asking him/her if he/she want to open Facebook and one again asking him/her as before if he/she want to open the Facebook App.
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v1.0.0) (2021-01-03)
 
-About the subject, you could for example have a look to this [stackoverflow's post](https://stackoverflow.com/questions/45858774/ios-11-facebook-signin-is-showing-an-initial-system-alert/).
+v1.0.0 is the initial release of the plugin, created as a fork of the now-deprecated [cordova-plugin-facebook4](https://github.com/jeduan/cordova-plugin-facebook4). Kudos to @jeduan and @peterpeterparker for their years of work maintaining that plugin!
 
-This is improved with iOS 11.3.
+## Features
+
+* Updated the Facebook iOS SDK to 8.2.0
+* Updated the Facebook Android SDK to 8.1.0
+* Updated the Facebook JavaScript SDK used by the browser platform to v9.0
+* Added the `FACEBOOK_BROWSER_SDK_VERSION` preference to override the default JavaScript SDK version
+
+## Bug Fixes
+
+* Fixed an issue that previously caused a loop when logging into Facebook on iOS
+* Removed all references to Open Graph Stories, which were [deprecated by Facebook in 2019](https://developers.facebook.com/docs/sharing/opengraph)
+* Updated plugin.xml to only run after_prepare hook on the browser platform
+* Updated browser after_prepare hook to get preferences including `APP_ID` and the new `FACEBOOK_BROWSER_SDK_VERSION` from package.json

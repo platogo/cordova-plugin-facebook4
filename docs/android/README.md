@@ -16,7 +16,7 @@ $ cd myApp/
 $ cordova platform add android
 
 # Remember to replace APP_ID and APP_NAME variables
-$ cordova plugin add https://github.com/jeduan/cordova-plugin-facebook4 --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
 ```
 
 You can now use the plugin right away
@@ -31,10 +31,10 @@ Of course if you could, you could update your Cordova CLI and avoid specifying e
 
 ### In case of conflict
 
-If you would face version conflicts regarding the Facebook SDK with other plugins used in your project while installing `cordova-plugin-facebook4` for your ANDROID platform, you would be able to specify a specific Facebook SDK version for ANDROID using the variable `FACEBOOK_ANDROID_SDK_VERSION`
+If you would face version conflicts regarding the Facebook SDK with other plugins used in your project while installing `cordova-plugin-facebook-connect` for your ANDROID platform, you would be able to specify a specific Facebook SDK version for ANDROID using the variable `FACEBOOK_ANDROID_SDK_VERSION`
 
 ```sh
-$ cordova plugin add https://github.com/jeduan/cordova-plugin-facebook4 --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_ANDROID_SDK_VERSION="X.YY.Z"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_ANDROID_SDK_VERSION="X.YY.Z"
 ```
 
 where `X.YY.Z` could be for example 4.25.0. More information about the Facebook SDK for Android and list of their versions in the [Facebook documentation](https://developers.facebook.com/docs/android)

@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-facebook4"
-        version="6.4.0">
+        id="cordova-plugin-facebook-connect"
+        version="2.1.0">
 
     <name>Facebook Connect</name>
 
     <description>
-      This is the official plugin for Facebook in Apache Cordova/PhoneGap!
+      This is the official plugin for Facebook in Apache Cordova!
 
       The Facebook plugin for Apache Cordova allows you to use the same JavaScript code in your
       Cordova application as you use in your web application.
     </description>
 
-    <repo>https://github.com/jeduan/cordova-plugin-facebook4</repo>
+    <repo>https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect</repo>
 
     <license>Apache 2.0</license>
 
     <preference name="APP_ID" />
     <preference name="APP_NAME" />
+    <preference name="FACEBOOK_URL_SCHEME_SUFFIX" default=" " />
+    <preference name="FACEBOOK_AUTO_LOG_APP_EVENTS" default="true" />
     <preference name="FACEBOOK_HYBRID_APP_EVENTS" default="false" />
-    <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="5.13.0"/>
+    <preference name="FACEBOOK_ADVERTISER_ID_COLLECTION" default="true" />
+    <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="9.0.0"/>
+    <preference name="FACEBOOK_IOS_SDK_VERSION" default="9.0.1"/>
+    <preference name="FACEBOOK_BROWSER_SDK_VERSION" default="v9.0" />
 
     <engines>
-        <!-- Requires > 3.5.0 because of the custom Framework tag for iOS [CB-6698] -->
-        <!-- Requires > 4.0.0 because of the Framework tag for Android that uses gradle -->
-        <engine name="cordova-android" version=">=3.5.0" />
-        <engine name="cordova-ios" version=">=3.5.0" />
+        <engine name="cordova-android" version=">=7.0.0" />
+        <engine name="cordova-ios" version=">=5.0.0" />
     </engines>
 
     <!-- android -->
@@ -49,22 +52,19 @@
         </config-file>
 
         <source-file src="src/android/facebookconnect.xml" target-dir="res/values" />
-        <!-- Used for cordova-android 6 -->
-        <config-file target="res/values/facebookconnect.xml" parent="/*">
-            <string name="fb_app_id">$APP_ID</string>
-            <string name="fb_app_name">$APP_NAME</string>
-            <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
-        </config-file>
-        <!-- Used for cordova-android 7 -->
         <config-file target="app/src/main/res/values/facebookconnect.xml" parent="/*">
             <string name="fb_app_id">$APP_ID</string>
             <string name="fb_app_name">$APP_NAME</string>
+            <bool name="fb_auto_log_app_events_enabled">$FACEBOOK_AUTO_LOG_APP_EVENTS</bool>
             <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
+            <bool name="fb_advertiser_id_collection_enabled">$FACEBOOK_ADVERTISER_ID_COLLECTION</bool>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="application">
             <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
             <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
+            <meta-data android:name='com.facebook.sdk.AutoLogAppEventsEnabled' android:value='@bool/fb_auto_log_app_events_enabled'/>
+            <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value='@bool/fb_advertiser_id_collection_enabled' />
             <activity android:name="com.facebook.FacebookActivity"
               android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
               android:label="@string/fb_app_name" />
@@ -107,8 +107,20 @@
             <string>$APP_NAME</string>
         </config-file>
 
+        <config-file target="*-Info.plist" parent="FacebookUrlSchemeSuffix">
+            <string>FACEBOOK_URL_SCHEME_SUFFIX_PLACEHOLDER</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="FacebookAutoLogAppEventsEnabled_PLACEHOLDER">
+            <string>FACEBOOK_AUTO_LOG_APP_EVENTS_PLACEHOLDER</string>
+        </config-file>
+
         <config-file target="*-Info.plist" parent="FacebookHybridAppEvents">
             <string>$FACEBOOK_HYBRID_APP_EVENTS</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="FacebookAdvertiserIDCollectionEnabled_PLACEHOLDER">
+            <string>FACEBOOK_ADVERTISER_ID_COLLECTION_PLACEHOLDER</string>
         </config-file>
 
         <config-file target="*-Info.plist" parent="CFBundleURLTypes">
@@ -116,7 +128,7 @@
             <dict>
               <key>CFBundleURLSchemes</key>
               <array>
-                <string>fb$APP_ID</string>
+                <string>fb$APP_IDFACEBOOK_URL_SCHEME_SUFFIX_PLACEHOLDER</string>
               </array>
             </dict>
           </array>
@@ -166,12 +178,13 @@
                 <source url="https://github.com/CocoaPods/Specs.git"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="FBSDKCoreKit" spec="5.15.0"/>
-                <pod name="FBSDKLoginKit" spec="5.15.0"/>
-                <pod name="FBSDKShareKit" spec="5.15.0"/>
+                <pod name="FBSDKCoreKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
+                <pod name="FBSDKLoginKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
+                <pod name="FBSDKShareKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
             </pods>
         </podspec>
 
+        <hook type="after_prepare" src="scripts/ios/after_prepare.js" />
     </platform>
 
     <!-- browser -->
@@ -192,8 +205,7 @@
             <access origin="https://*.fbcdn.net" />
             <access origin="https://*.akamaihd.net" />
         </config-file>
+        
+        <hook type="after_prepare" src="scripts/browser/after_prepare.js" />
     </platform>
-
-    <!-- after_prepare hook to populate APP_ID -->
-    <hook type="after_prepare" src="scripts/after_prepare.js" />
 </plugin>

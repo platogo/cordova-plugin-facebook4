@@ -13,17 +13,23 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import <FBSDKCoreKit/FBSDKAppEventsUtility.h>
 #import <Cordova/CDV.h>
 #import "AppDelegate.h"
 
 @interface FacebookConnectPlugin : CDVPlugin <FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate>
-- (void)enableAutoTrackings:(CDVInvokedUrlCommand *)command;
+- (void)getAdvertiserId:(CDVInvokedUrlCommand *)command;
 - (void)getLoginStatus:(CDVInvokedUrlCommand *)command;
 - (void)getAccessToken:(CDVInvokedUrlCommand *)command;
+- (void)setAutoLogAppEventsEnabled:(CDVInvokedUrlCommand *)command;
+- (void)setAdvertiserIDCollectionEnabled:(CDVInvokedUrlCommand *)command;
+- (void)setAdvertiserTrackingEnabled:(CDVInvokedUrlCommand *)command;
 - (void)logEvent:(CDVInvokedUrlCommand *)command;
 - (void)logPurchase:(CDVInvokedUrlCommand *)command;
 - (void)login:(CDVInvokedUrlCommand *)command;
 - (void)checkHasCorrectPermissions:(CDVInvokedUrlCommand *)command;
+- (void)isDataAccessExpired:(CDVInvokedUrlCommand *)command;
+- (void)reauthorizeDataAccess:(CDVInvokedUrlCommand *)command;
 - (void)logout:(CDVInvokedUrlCommand *)command;
 - (void)graphApi:(CDVInvokedUrlCommand *)command;
 - (void)showDialog:(CDVInvokedUrlCommand *)command;

@@ -1,8 +1,8 @@
-# Contributing to PhoneGap Facebook Plugin
+# Contributing to Cordova Facebook Connect Plugin
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-The following is a set of guidelines for contributing to the PhoneGap Facebook Connect Plugin.
+The following is a set of guidelines for contributing to the Cordova Facebook Connect Plugin.
 
 These are just guidelines, not rules, use your best judgement and feel free to propose changes to this document in a pull request.
 
@@ -11,7 +11,7 @@ These are just guidelines, not rules, use your best judgement and feel free to p
 Before creating a Github issue make sure you...
 
 - Check the [Troubleshooting Guide](./docs/TROUBLESHOOTING.md) for well known issues.
-- Search the [issues list](https://github.com/Wizcorp/phonegap-facebook-plugin/issues) for existing closed or still open issues
+- Search the [issues list](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues) for existing closed or still open issues
 - Create a Github issue
 
 #### Creating an Issue

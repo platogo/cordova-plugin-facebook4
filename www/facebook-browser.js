@@ -3,16 +3,21 @@ var __fbSdkReady = false;
 var __fbCallbacks = [];
 /* */
 
-exports.getLoginStatus = function getLoginStatus (s, f) {
+exports.getLoginStatus = function getLoginStatus (force, s, f) {
+  if (typeof force === 'function') {
+    s = force;
+    f = s;
+    force = false;
+  }
   if (!__fbSdkReady) {
     return __fbCallbacks.push(function() {
-      getLoginStatus(s, f);
+      getLoginStatus(force, s, f);
     });
   }
 
   FB.getLoginStatus(function (response) {
-    s(response)
-  })
+    if(s) s(response);
+  }, force)
 }
 
 exports.showDialog = function showDialog (options, s, f) {
@@ -24,18 +29,24 @@ exports.showDialog = function showDialog (options, s, f) {
 
   options.name = options.name || ''
   options.message = options.message || ''
-  options.caption = options.caption || ''
-  options.description = options.description || ''
   options.href = options.href || ''
-  options.picture = options.picture || ''
   options.quote = options.quote || ''
+  if (options.actionType) {
+    options.action_type = options.actionType
+  }
+  if (options.objectID) {
+    options.object_id = options.objectID
+  }
+  if (options.filters && !Array.isArray(options.filters)) {
+    options.filters = [options.filters]
+  }
 
   FB.ui(options, function (response) {
     if (response && (response.request || !response.error_code)) {
-      s(response)
+      if(s) s(response);
       return
     }
-    f(response.message)
+    if(f) f(response.message);
   })
 }
 // Attach this to a UI element, this requires user interaction.
@@ -69,26 +80,113 @@ exports.login = function login (permissions, s, f) {
    */
   FB.login(function (response) {
     if (response.authResponse) {
-      s(response)
+      if(s) s(response);
     } else if (response) { // Previously this was just an else statement.
       if (response.status) { // When status is undefined this would throw an error, and rejection function would never be invoked.
-        f(response.status.message)
+        if(f) f(response.status.message);
       } else {
-        f(response)
+        if(f) f(response);
       }
     } else { // In case that no response is available (e.g. popup dismissed)
-      f('No response')
+      if(f) f('No response');
     } 
   }, options)
 }
 
+exports.checkHasCorrectPermissions = function checkHasCorrectPermissions (permissions, s, f) {
+  if (!__fbSdkReady) {
+    return __fbCallbacks.push(function() {
+      checkHasCorrectPermissions(permissions, s, f);
+    });
+  }
+
+  if (!permissions || permissions.length === 0) {
+    if(s) s('All permissions have been accepted');
+  } else {
+    FB.api('me/permissions', function (response) {
+      if (response.error || !response.data) {
+        if(f) f('There was an error getting the list of the user\'s permissions.');
+      } else {
+        var userPermissions = response.data, 
+        grantedPermissions = [], 
+        declinedPermissionsFound = false
+        for (var x = 0; x < userPermissions.length; x++) {
+          if (userPermissions[x].status == 'granted') {
+            grantedPermissions.push(userPermissions[x].permission);
+          }
+        }
+        for (var x = 0; x < permissions.length; x++) {
+          if (grantedPermissions.indexOf(permissions[x]) < 0) {
+            declinedPermissionsFound = true;
+          }
+        }
+        if (declinedPermissionsFound) {
+          if(f) f('A permission has been denied');
+        } else {
+          if(s) s('All permissions have been accepted');
+        }
+      }
+    })
+  }
+}
+
+exports.isDataAccessExpired = function isDataAccessExpired (s, f) {
+  if (!__fbSdkReady) {
+    return __fbCallbacks.push(function() {
+      isDataAccessExpired(s, f);
+    });
+  }
+
+  var accessToken = FB.getAccessToken()
+  if (accessToken) {
+    FB.getLoginStatus(function (response) {
+      if(!response.authResponse || !response.authResponse.data_access_expiration_time) {
+        if(f) f('Data access expiration time not available.');
+      } else {
+        var isExpired = response.authResponse.data_access_expiration_time < new Date().getTime() / 1000;
+        if(s) s(isExpired ? 'true' : 'false');
+      }
+    })
+  } else {
+    if(f) f('Session not open.');
+  }
+}
+
+exports.reauthorizeDataAccess = function reauthorizeDataAccess (s, f) {
+  if (!__fbSdkReady) {
+    return __fbCallbacks.push(function() {
+      reauthorizeDataAccess(s, f);
+    });
+  }
+  
+  FB.login(function (response) {
+    if (response.authResponse) {
+      if(s) s(response);
+    } else if (response) {
+      if (response.status) {
+        if(f) f(response.status.message);
+      } else {
+        if(f) f(response);
+      }
+    } else {
+      if(f) f('No response');
+    }
+  }, { auth_type: 'reauthorize' })
+}
+
 exports.getAccessToken = function getAccessToken (s, f) {
+  if (!__fbSdkReady) {
+    return __fbCallbacks.push(function() {
+      getAccessToken(s, f);
+    });
+  }
+  
   var response = FB.getAccessToken()
   if (response) {
-    s(response)
+    if(s) s(response);
     return
   }
-  f('NO_TOKEN')
+  if(f) f('Session not open.');
 }
 
 exports.logEvent = function logEvent (eventName, params, valueToSum, s, f) {
@@ -103,14 +201,19 @@ exports.logEvent = function logEvent (eventName, params, valueToSum, s, f) {
   if(s) s();
 }
 
-exports.logPurchase = function logPurchase (value, currency, s, f) {
+exports.logPurchase = function logPurchase (value, currency, params, s, f) {
+  if (typeof params === 'function') {
+    s = params;
+    f = s;
+    params = undefined;
+  }
   if (!__fbSdkReady) {
     return __fbCallbacks.push(function() {
-      logPurchase(value, currency, s, f);
+      logPurchase(value, currency, params, s, f);
     });
   }
   
-  FB.AppEvents.logPurchase(value, currency);
+  FB.AppEvents.logPurchase(value, currency, params);
 
   if(s) s();
 }
@@ -123,30 +226,49 @@ exports.logout = function logout (s, f) {
   }
 
   FB.logout(function (response) {
-    s(response)
+    if(s) s(response);
   })
 }
 
-exports.api = function api (graphPath, permissions, s, f) {
+exports.api = function api (graphPath, permissions, httpMethod, s, f) {
+  if (typeof httpMethod === 'function') {
+    s = httpMethod;
+    f = s;
+    httpMethod = undefined;
+  }
+  if (httpMethod) {
+    httpMethod = httpMethod.toLowerCase();
+    if (httpMethod != 'post' && httpMethod != 'delete') {
+      httpMethod = undefined;
+    }
+  }
+  httpMethod = httpMethod || 'get'
   if (!__fbSdkReady) {
     return __fbCallbacks.push(function() {
-      api(graphPath, permissions, s, f);
+      api(graphPath, permissions, httpMethod, s, f);
     });
   }
 
   // JS API does not take additional permissions
-  FB.api(graphPath, function (response) {
+  FB.api(graphPath, httpMethod, function (response) {
     if (response.error) {
-      f(response)
+      if(f) f(response);
     } else {
-      s(response)
+      if(s) s(response);
     }
   })
 }
 
-exports.browserInit = function browserInit (appId, version, s) {
-  console.warn("browserInit is deprecated and may be removed in the future");
-  console.trace();
+exports.activateApp = function logEvent (s, f) {
+  if (!__fbSdkReady) {
+    return __fbCallbacks.push(function() {
+      activateApp(s, f);
+    });
+  }
+
+  FB.AppEvents.activateApp();
+
+  if(s) s();
 }
 
 if (window.location.protocol === "file:") {
@@ -154,9 +276,9 @@ if (window.location.protocol === "file:") {
 } else {
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : APP_ID,  // APP_ID is populated by the cordova after_prepare hook
+      appId      : APP_ID,  // populated by the cordova after_prepare hook
       xfbml      : true,
-      version    : 'v2.7'
+      version    : FACEBOOK_BROWSER_SDK_VERSION // populated by the cordova after_prepare hook
     });
 
     __fbSdkReady = true;
