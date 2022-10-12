@@ -230,6 +230,28 @@ exports.logout = function logout (s, f) {
   })
 }
 
+exports.getCurrentProfile = function getCurrentProfile (s, f) {
+  if (!__fbSdkReady) {
+    return __fbCallbacks.push(function() {
+      getCurrentProfile(s, f);
+    });
+  }
+
+  var accessToken = FB.getAccessToken()
+  if(accessToken) {
+    FB.api('/me', {fields: 'id,first_name,last_name'}, function(response) {
+      var profileObject = {
+        userID: response.id || "", 
+        firstName: response.first_name || "", 
+        lastName: response.last_name || ""
+      };
+      if(s) s(profileObject);
+    })
+  } else {
+    if(f) f('No current profile.');
+  }
+}
+
 exports.api = function api (graphPath, permissions, httpMethod, s, f) {
   if (typeof httpMethod === 'function') {
     s = httpMethod;

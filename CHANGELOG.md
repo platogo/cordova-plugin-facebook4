@@ -1,3 +1,84 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v3.2.0) (2021-09-17)
+
+## Features
+
+* Updated the Facebook SDK to 11.3.0 for Android
+
+## Documentation
+
+* Updated README to add link to Facebook documentation on Access Levels (closes [#92](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/92))
+
+<a name="3.1.1"></a>
+# [3.1.1](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v3.1.1) (2021-09-07)
+
+## Breaking Changes
+
+* Updated plugin.xml to indicate that cordova-android >= 9 is required (closes [#90](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/90))
+
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v3.1.0) (2021-08-31)
+
+## Features
+
+* Updated the `showDialog` method to allow for sharing photos (closes [#54](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/54))
+* Added new `setDataProcessingOptions` method to allow for setting Data Processing Options as part of compliance with the California Consumer Privacy Act (CCPA) (closes [#57](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/57))
+* Added new `setUserData` and `clearUserData` methods to enable the use of Advanced Matching (closes [#56](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/56))
+
+## Bug Fixes
+
+* Fixed an issue that could break the Cordova resume event on Android, which in turn could cause problems with elements like `<input type="file" />` (closes [#68](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/68))
+* Fixed an issue that would cause Facebook dialogs to open in a webview on Android (closes [#81](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/81))
+
+## Documentation
+
+* Updated README to document the `getDeferredApplink` method, and the process necessary to use it on iOS (closes [#42](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/42))
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v3.0.0) (2021-08-17)
+
+## Breaking Changes
+
+* Dropped support for cordova-ios 5 (closes [#40](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/40))
+* Dropped support for iOS 8 and below (closes [#41](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/41))
+* Updated the `login` method error callback to return an object on iOS as on Android (closes [#19](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/19))
+
+## Features
+
+* Updated the Facebook SDK to 11.2.0 for Android and 11.1.0 for iOS
+* Updated the Facebook JavaScript SDK used by the browser platform to v11.0
+* Updated the object returned by methods such as `login` to remove the `secret`, `session_key`, and `sig` properties, and add the new `data_access_expiration_time` property (closes [#49](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/49))
+* Added new `getApplicationId`, `setApplicationId`, `getApplicationName`, and `setApplicationName` methods to allow for dynamically switching between app IDs in code (closes [#61](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/61))
+* Added new `OTHER_APP_SCHEMES` variable which is required for iOS when using `setApplicationId` to switch between multiple app IDs
+
+## Bug Fixes
+
+* Fixed an issue that would cause the *-Info.plist file to have a null value if FACEBOOK_URL_SCHEME_SUFFIX was null (closes [#77](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/77))
+
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v2.3.0) (2021-04-21)
+
+## Features
+
+* Updated the Facebook SDK to 9.1.1 for Android and 9.2.0 for iOS
+* Added new `loginWithLimitedTracking` method to allow for using Limited Login on iOS (closes [#51](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/51))
+* Added new `getCurrentProfile` method to support retrieving profile information for the currently logged in user
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v2.2.0) (2021-04-06)
+
+## Features
+
+* Updated the Facebook SDK to 9.1.0 for Android and iOS
+
+## Bug Fixes
+
+* Added a hook to allow variables to be replaced in Podfile when using cordova-ios 5 (closes [#52](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/52))
+
+## Documentation
+
+* Updated README to make it clear that an access token must be included when using the `api` method (closes [#50](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/50))
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v2.1.0) (2021-03-06)
 
@@ -23,7 +104,7 @@
 ## Features
 
 * Updated the Facebook SDK to 9.0.0 for Android and 9.0.1 for iOS (closes [#15](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/15))
-* Updated the `login` method to remove unnecessary checks for read/publish permissions; the plugin will no longer prevent developers from requesting read and publish permissions at the same time, and will rely on the Facebook SDK's own internal logic instead [#34](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/pull/34)
+* Updated the `login` method to remove unnecessary checks for read/publish permissions; the plugin will no longer prevent developers from requesting read and publish permissions at the same time, and will rely on the Facebook SDK's own internal logic instead (closes [#34](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/pull/34))
 * Updated the `showDialog` method to remove the deprecated caption, description, and picture properties (closes [#28](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues/28))
 * Added a new `setAdvertiserTrackingEnabled` method to allow for enabling advertiser tracking on iOS 14+
 

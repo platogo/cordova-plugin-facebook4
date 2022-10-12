@@ -43,15 +43,3 @@ If you install the plugin and face the error `Failed to install 'cordova-plugin-
 ```bash
 pod update
 ```
-
-#### 'FBSDKCoreKit/FBSDKCoreKit.h' file not found
-
-If you are using Cordova iOS < v5, you might face the error `'FBSDKCoreKit/FBSDKCoreKit.h' file not found`. To overcome this problem, edit the `plugin.xml` of the plugin in order to fetch de Facebook iOS SDK by adding the following `framework` references:
-
-```
-<framework src="FBSDKCoreKit" type="podspec" spec="X.Y.Z" />
-<framework src="FBSDKLoginKit" type="podspec" spec="X.Y.Z" />
-<framework src="FBSDKShareKit" type="podspec" spec="X.Y.Z" />
-```
-
-Replace `X.Y.Z` with the Facebook iOS SDK and remove and add your platform again.

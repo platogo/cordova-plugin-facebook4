@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-facebook-connect"
-        version="2.1.0">
+        version="3.2.0">
 
     <name>Facebook Connect</name>
 
@@ -20,16 +20,17 @@
     <preference name="APP_ID" />
     <preference name="APP_NAME" />
     <preference name="FACEBOOK_URL_SCHEME_SUFFIX" default=" " />
+    <preference name="OTHER_APP_SCHEMES" default=" " />
     <preference name="FACEBOOK_AUTO_LOG_APP_EVENTS" default="true" />
     <preference name="FACEBOOK_HYBRID_APP_EVENTS" default="false" />
     <preference name="FACEBOOK_ADVERTISER_ID_COLLECTION" default="true" />
-    <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="9.0.0"/>
-    <preference name="FACEBOOK_IOS_SDK_VERSION" default="9.0.1"/>
-    <preference name="FACEBOOK_BROWSER_SDK_VERSION" default="v9.0" />
+    <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="11.3.0"/>
+    <preference name="FACEBOOK_IOS_SDK_VERSION" default="11.1.0"/>
+    <preference name="FACEBOOK_BROWSER_SDK_VERSION" default="v11.0" />
 
     <engines>
-        <engine name="cordova-android" version=">=7.0.0" />
-        <engine name="cordova-ios" version=">=5.0.0" />
+        <engine name="cordova-android" version=">=9.0.0" />
+        <engine name="cordova-ios" version=">=6.0.0" />
     </engines>
 
     <!-- android -->
@@ -60,6 +61,12 @@
             <bool name="fb_advertiser_id_collection_enabled">$FACEBOOK_ADVERTISER_ID_COLLECTION</bool>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <queries>
+                <package android:name="com.facebook.katana" />
+            </queries>
+        </config-file>
+
         <config-file target="AndroidManifest.xml" parent="application">
             <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
             <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
@@ -68,6 +75,9 @@
             <activity android:name="com.facebook.FacebookActivity"
               android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
               android:label="@string/fb_app_name" />
+            <provider android:authorities="com.facebook.app.FacebookContentProvider$APP_ID"
+              android:name="com.facebook.FacebookContentProvider"
+              android:exported="true" />
         </config-file>
 
         <framework src="com.facebook.android:facebook-android-sdk:$FACEBOOK_ANDROID_SDK_VERSION"/>
@@ -129,6 +139,7 @@
               <key>CFBundleURLSchemes</key>
               <array>
                 <string>fb$APP_IDFACEBOOK_URL_SCHEME_SUFFIX_PLACEHOLDER</string>
+                <string>OTHER_APP_SCHEMES_PLACEHOLDER</string>
               </array>
             </dict>
           </array>
