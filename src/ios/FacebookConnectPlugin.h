@@ -14,6 +14,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <FBSDKCoreKit/FBSDKAppEventsUtility.h>
+#import <AdSupport/ASIdentifierManager.h>
+
 #import <Cordova/CDV.h>
 #import "AppDelegate.h"
 

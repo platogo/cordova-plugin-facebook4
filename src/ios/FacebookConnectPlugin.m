@@ -78,7 +78,8 @@
 #pragma mark - Cordova commands
 
 - (void)getAdvertiserId:(CDVInvokedUrlCommand *)command {
-    NSString *advertiserID = [FBSDKAppEventsUtility advertiserID];
+    NSString *advertiserID = [[[ASIdentifierManager sharedManager]
+       advertisingIdentifier] UUIDString];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                   messageAsString: advertiserID];
