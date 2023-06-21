@@ -104,6 +104,24 @@
     [self returnGenericSuccess:command.callbackId];
 }
 
+- (void)getClientToken:(CDVInvokedUrlCommand *)command {
+    NSString *clientToken = FBSDKSettings.clientToken;
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:clientToken];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)setClientToken:(CDVInvokedUrlCommand *)command {
+    if ([command.arguments count] == 0) {
+        // Not enough arguments
+        [self returnInvalidArgsError:command.callbackId];
+        return;
+    }
+    
+    NSString *clientToken = [command argumentAtIndex:0];
+    [FBSDKSettings setClientToken:clientToken];
+    [self returnGenericSuccess:command.callbackId];
+}
+
 - (void)getApplicationName:(CDVInvokedUrlCommand *)command {
     NSString *displayName = FBSDKSettings.displayName;
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:displayName];

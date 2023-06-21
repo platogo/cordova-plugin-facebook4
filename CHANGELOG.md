@@ -1,3 +1,15 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v4.0.0) (TBD)
+
+## Breaking Changes
+
+* A Client Token is now required when adding the plugin. Client Tokens can be set using the new `CLIENT_TOKEN` preference. Developers can also get and set Client Tokens in code using the new `getClientToken` and `setClientToken` methods. See [Facebook docs](https://developers.facebook.com/docs/facebook-login/access-tokens/#clienttokens) for more information
+
+## Features
+
+* Updated the Facebook SDK to 12.0.0 for Android and iOS
+* Updated the Facebook JavaScript SDK used by the browser platform to v12.0
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v3.2.0) (2021-09-17)
 

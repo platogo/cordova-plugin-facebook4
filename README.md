@@ -18,7 +18,7 @@ See npm package for versions - https://www.npmjs.com/package/cordova-plugin-face
 Make sure you've registered your Facebook app with Facebook and have an `APP_ID` [https://developers.facebook.com/apps](https://developers.facebook.com/apps).
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable CLIENT_TOKEN="abcd1234"
 ```
 
 As the `APP_NAME` is used as a string in XML files, if your app name contains any special characters like "&", make sure you escape them, e.g. "&amp;".
@@ -91,8 +91,24 @@ Success function indicates the application name has been updated.
 Note that in order to dynamically switch between multiple app IDs on iOS, you must use the *OTHER_APP_SCHEMES* variable and specify each additional app ID you will use with `setApplicationId` separated by a comma, e.g.
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable OTHER_APP_SCHEMES="fb987654321,fb876543210,fb765432109"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable CLIENT_TOKEN="abcd1234" --variable OTHER_APP_SCHEMES="fb987654321,fb876543210,fb765432109"
 ```
+
+### Get Client Token
+
+`facebookConnectPlugin.getClientToken(Function success)`
+
+Success function returns the current Client Token.
+
+### Set Client Token
+
+By default, the CLIENT_TOKEN provided when the plugin is added is used. If you instead need to set the Client Token in code, you can do so. (You must still include a CLIENT_TOKEN when adding the plugin.)
+
+`facebookConnectPlugin.setClientToken(String token, Function success, Function failure)`
+
+Success function indicates the Client Token has been updated.
+
+Failure function returns an error String.
 
 ### Login
 
@@ -500,7 +516,7 @@ Starting from Facebook SDK v4.34 for both iOS and Android, there is a new way of
 In order to enable this feature in your Cordova app, please set the *FACEBOOK_HYBRID_APP_EVENTS* variable to "true" (default is false):
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_HYBRID_APP_EVENTS="true"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable CLIENT_TOKEN="abcd1234" --variable FACEBOOK_HYBRID_APP_EVENTS="true"
 ```
 
 Please check [this repo](https://github.com/msencer/fb_hybrid_app_events_sample) for an example app using this feature.
@@ -512,7 +528,7 @@ This plugin supports Facebook's [GDPR Compliance](https://developers.facebook.co
 In order to enable this feature in your Cordova app, please set the *FACEBOOK_AUTO_LOG_APP_EVENTS* variable to "false" (default is true).
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_AUTO_LOG_APP_EVENTS="false"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable CLIENT_TOKEN="abcd1234" --variable FACEBOOK_AUTO_LOG_APP_EVENTS="false"
 ```
 
 Then, re-enable auto-logging after an end User provides consent by calling the `setAutoLogAppEventsEnabled` method and set it to true.
@@ -530,7 +546,7 @@ facebookConnectPlugin.setAutoLogAppEventsEnabled(true, function() {
 To disable collection of `advertiser-id`, please set the *FACEBOOK_ADVERTISER_ID_COLLECTION* variable to "false" (default is true).
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_ADVERTISER_ID_COLLECTION="false"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable CLIENT_TOKEN="abcd1234" --variable FACEBOOK_ADVERTISER_ID_COLLECTION="false"
 ```
 
 Then, re-enable collection by calling the `setAdvertiserIDCollectionEnabled` method and set it to true.
@@ -583,5 +599,5 @@ See the [Facebook Developer documentation](https://developers.facebook.com/docs/
 When using the same Facebook app with multiple iOS apps, use the *FACEBOOK_URL_SCHEME_SUFFIX* variable to set a unique URL Suffix for each app. This ensures that Facebook redirects back to the correct app after closing the login window.
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_URL_SCHEME_SUFFIX="mysecondapp"
+$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable CLIENT_TOKEN="abcd1234" --variable FACEBOOK_URL_SCHEME_SUFFIX="mysecondapp"
 ```

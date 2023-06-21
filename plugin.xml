@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-facebook-connect"
-        version="3.2.0">
+        version="4.0.0">
 
     <name>Facebook Connect</name>
 
@@ -18,15 +18,16 @@
     <license>Apache 2.0</license>
 
     <preference name="APP_ID" />
+    <preference name="CLIENT_TOKEN" />
     <preference name="APP_NAME" />
     <preference name="FACEBOOK_URL_SCHEME_SUFFIX" default=" " />
     <preference name="OTHER_APP_SCHEMES" default=" " />
     <preference name="FACEBOOK_AUTO_LOG_APP_EVENTS" default="true" />
     <preference name="FACEBOOK_HYBRID_APP_EVENTS" default="false" />
     <preference name="FACEBOOK_ADVERTISER_ID_COLLECTION" default="true" />
-    <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="11.3.0"/>
+    <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="12.0.0"/>
     <preference name="FACEBOOK_IOS_SDK_VERSION" default="11.1.0"/>
-    <preference name="FACEBOOK_BROWSER_SDK_VERSION" default="v11.0" />
+    <preference name="FACEBOOK_BROWSER_SDK_VERSION" default="v12.0" />
 
     <engines>
         <engine name="cordova-android" version=">=9.0.0" />
@@ -55,6 +56,7 @@
         <source-file src="src/android/facebookconnect.xml" target-dir="res/values" />
         <config-file target="app/src/main/res/values/facebookconnect.xml" parent="/*">
             <string name="fb_app_id">$APP_ID</string>
+            <string name="fb_client_token">$CLIENT_TOKEN</string>
             <string name="fb_app_name">$APP_NAME</string>
             <bool name="fb_auto_log_app_events_enabled">$FACEBOOK_AUTO_LOG_APP_EVENTS</bool>
             <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
@@ -69,6 +71,7 @@
 
         <config-file target="AndroidManifest.xml" parent="application">
             <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
+            <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/fb_client_token"/>
             <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
             <meta-data android:name='com.facebook.sdk.AutoLogAppEventsEnabled' android:value='@bool/fb_auto_log_app_events_enabled'/>
             <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value='@bool/fb_advertiser_id_collection_enabled' />
@@ -111,6 +114,10 @@
 
         <config-file target="*-Info.plist" parent="FacebookAppID">
             <string>$APP_ID</string>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="FacebookClientToken">
+            <string>$CLIENT_TOKEN</string>
         </config-file>
 
         <config-file target="*-Info.plist" parent="FacebookDisplayName">

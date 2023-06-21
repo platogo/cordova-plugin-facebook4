@@ -12,6 +12,14 @@ exports.setApplicationId = function (appId, s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'setApplicationId', [appId])
 }
 
+exports.getClientToken = function (s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'getClientToken', [])
+}
+
+exports.setClientToken = function (clientToken, s, f) {
+  exec(s, f, 'FacebookConnectPlugin', 'setClientToken', [clientToken])
+}
+
 exports.getApplicationName = function (s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'getApplicationName', [])
 }
