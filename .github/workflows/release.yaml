@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
-      - run: cp {README.md,CHANGELOG.md,docs} plugin
+      - run: cp -r {README.md,CHANGELOG.md,docs} plugin
       - name: Publish
         working-directory: ./plugin
         run: npm publish --access public --tag ${{github.ref_name == 'master' && 'latest' || 'next' }}
