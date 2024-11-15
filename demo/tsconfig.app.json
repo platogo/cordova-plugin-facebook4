@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app"
+  },
+  "include": [
+    "src/**/*.ts",
+    "@types/cordova"
+  ],
+  "exclude": [
+    "src/environments/environment.*.ts",
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ]
+}

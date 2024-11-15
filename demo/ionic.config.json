@@ -1,0 +1,7 @@
+{
+  "name": "cordova-plugin-fbsdk-lab",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
