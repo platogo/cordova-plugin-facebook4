@@ -6,7 +6,7 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Sample repo](#sample-repo)
+- [Demo](#sample-repo)
 - [Compatibility](#compatibility)
 - [Facebook SDK](#facebook-sdk)
 - [API](#api)
@@ -41,9 +41,9 @@ This is a fork of the [official plugin for Facebook](https://github.com/Wizcorp/
 
 The Facebook plugin for [Apache Cordova](http://cordova.apache.org/) allows you to use the same JavaScript code in your Cordova application as you use in your web application.
 
-## Sample Repo
+## Demo
 
-If you are looking to test the plugin, would like to reproduce a bug or build issues, there is a demo project for such purpose: [cordova-plugin-fbsdk-lab](https://github.com/MaximBelov/cordova-plugin-fbsdk-lab).
+If you are looking to test the plugin, would like to reproduce a bug or build issues, there is a demo project for such purpose: [demo](demo).
 
 ## Compatibility
 
