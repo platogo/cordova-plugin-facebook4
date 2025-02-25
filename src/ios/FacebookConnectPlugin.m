@@ -312,7 +312,7 @@
     CDVPluginResult *pluginResult;
     NSArray *permissions = nil;
 
-    if ([command.arguments count] > 0) {
+    if ([command.arguments isKindOfClass:[NSArray class]]) {
         permissions = command.arguments;
     }
 
