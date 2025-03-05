@@ -311,7 +311,6 @@
     NSLog(@"Starting login");
     CDVPluginResult *pluginResult;
     NSArray *permissions = nil;
-    NSLog(command.arguments);
     if ([command.arguments isKindOfClass:[NSMutableArray class]]) {
         permissions = command.arguments;
     }
