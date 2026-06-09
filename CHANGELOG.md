@@ -1,5 +1,15 @@
+<a name="4.0.1"></a>
+# [4.0.1](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.0.1) (2022-09-07)
+
+## Features
+
+* Updated the Facebook SDK to 14.1.1 for Android
+* Updated the Facebook SDK to 14.1.0 for iOS
+* Updated the Facebook JavaScript SDK used by the browser platform to v14.0
+* Update plugin id cordova-plugin-fbsdk 
+
 <a name="4.0.0"></a>
-# [4.0.0](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/releases/tag/v4.0.0) (TBD)
+# [4.0.0](https://github.com/MaximBelov/cordova-plugin-facebook-connect/releases/tag/v4.0.0) (2022-09-06)
 
 ## Breaking Changes
 

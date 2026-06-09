@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-facebook-connect" version="4.0.0">
+    xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-fbsdk" version="4.0.1">
 
     <name>Facebook Connect</name>
 
@@ -11,7 +11,7 @@
       Cordova application as you use in your web application.
     </description>
 
-    <repo>https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect</repo>
+    <repo>https://github.com/MaximBelov/cordova-plugin-fbsdk</repo>
 
     <license>Apache 2.0</license>
 

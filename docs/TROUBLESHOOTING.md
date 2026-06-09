@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Can't solve your issue here? Check the [existing issues](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/issues) on Github. If you still cannot find a solution please [create and issue after reading the contributing guide](../CONTRIBUTING.md). 
+Can't solve your issue here? Check the [existing issues](https://github.com/MaximBelov/cordova-plugin-fbsdk/issues) on Github. If you still cannot find a solution please [create and issue after reading the contributing guide](../CONTRIBUTING.md). 
 
 When creating a Github issue **remember to**:
 
@@ -52,7 +52,7 @@ The better way to understand this little "workflow" is to manipulate the Graph A
     - I was using `FB.init()` and now it's not working.
 
 - Solution
-    - You are using an out-dated API. Please check the [new API with sample code](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect/blob/master/README.md) and sample projects in `platforms/ios` and `platforms/android`.
+    - You are using an out-dated API. Please check the [new API with sample code](https://github.com/MaximBelov/cordova-plugin-fbsdk/blob/master/README.md) and sample projects in `platforms/ios` and `platforms/android`.
 
 ## Android
 ### No Reply From Login?

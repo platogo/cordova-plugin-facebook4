@@ -23,13 +23,13 @@ $ cd myApp/
 $ cordova platform add browser
 
 # Remember to replace APP_ID and APP_NAME variables
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+$ cordova plugin add cordova-plugin-fbsdk --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
 ```
 
 ## Change Facebook JavaScript SDK version
 
 ```sh
-$ cordova plugin add cordova-plugin-facebook-connect --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_BROWSER_SDK_VERSION="v11.0"
+$ cordova plugin add cordova-plugin-fbsdk --save --variable APP_ID="123456789" --variable APP_NAME="myApplication" --variable FACEBOOK_BROWSER_SDK_VERSION="v14.0"
 ```
 
 ## Setup

@@ -19,7 +19,7 @@ A clear and concise description of what you expected to happen
 
 A sample repo is needed for this issue to be fixed, please provide one in order to reproduce the problem.
 
-You could for example try to use the [cordova-plugin-facebook-connect-lab](https://github.com/cordova-plugin-facebook-connect/cordova-plugin-facebook-connect-lab) to reproduce your issue.
+You could for example try to use the [cordova-plugin-fbsdk-lab](https://github.com/MaximBelov/cordova-plugin-fbsdk-lab) to reproduce your issue.
 
 **Plugin version, OS, devices, etc**
 
