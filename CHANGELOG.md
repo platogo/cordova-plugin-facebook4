@@ -1,3 +1,13 @@
+<a name="4.1.0"></a>
+
+# [4.1.0](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.1.0) (2024-04-23)
+
+## Features
+
+* Updated the Facebook SDK to 17.0.0 for Android
+* Updated the Facebook SDK to 17.0.0 for iOS
+* Updated the Facebook JavaScript SDK used by the browser platform to v19.0
+
 <a name="4.0.4"></a>
 # [4.0.4](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.0.4) (2023-03-28)
 
