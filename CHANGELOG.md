@@ -1,3 +1,10 @@
+<a name="4.1.2"></a>
+
+## Refactor
+* Updated the Facebook SDK to 17.0.2 for Android
+* Updated the Facebook SDK to 17.1.0 for iOS
+* Updated the Facebook JavaScript SDK used by the browser platform to v21.0
+
 <a name="4.1.1"></a>
 
 # [4.1.1](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.1.1) (2024-06-28)
