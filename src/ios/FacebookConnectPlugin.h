@@ -16,6 +16,7 @@
 #import <FBSDKCoreKit/FBSDKAppEventsUtility.h>
 #import <AdSupport/ASIdentifierManager.h>
 
+#import <FBSDKGamingServicesKit/FBSDKGamingServicesKit-Swift.h>
 #import <Cordova/CDV.h>
 #import "AppDelegate.h"
 
