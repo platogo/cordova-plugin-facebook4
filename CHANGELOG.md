@@ -1,3 +1,10 @@
+<a name="4.0.2"></a>
+# [4.0.2](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.0.2) (2022-10-12)
+
+## Features
+
+* Android fix error INSTALL_FAILED_CONFLICTING_PROVIDER
+
 <a name="4.0.1"></a>
 # [4.0.1](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.0.1) (2022-09-07)
 
