@@ -74,7 +74,7 @@
             <meta-data android:name='com.facebook.sdk.AutoLogAppEventsEnabled' android:value='@bool/fb_auto_log_app_events_enabled'/>
             <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value='@bool/fb_advertiser_id_collection_enabled' />
             <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/fb_app_name" />
-            <provider android:authorities="com.facebook.app.FacebookContentProvider$APP_ID" android:name="com.facebook.FacebookContentProvider" android:exported="true" />
+            <provider android:authorities="${applicationId}.com.facebook.app.FacebookContentProvider$APP_ID" android:name="com.facebook.FacebookContentProvider" android:exported="true" />
         </config-file>
 
         <framework src="com.facebook.android:facebook-android-sdk:$FACEBOOK_ANDROID_SDK_VERSION"/>
