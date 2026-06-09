@@ -28,7 +28,9 @@ export class HomePage {
       return
     }
     try {
-      const res = await this.facebook.loginWithLimitedTracking(['public_profile', 'user_friends', 'email']);
+      // https://github.com/danielsogl/awesome-cordova-plugins/pull/4921
+      // @ts-ignore
+      const res = await this.facebook.loginWithLimitedTracking(['public_profile', 'user_friends'], '123');
       console.log('Logged into Facebook!', JSON.stringify(res));
       alert('Login OK');
     } catch (error) {

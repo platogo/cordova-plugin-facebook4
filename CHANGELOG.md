@@ -1,3 +1,10 @@
+<a name="4.1.3"></a>
+
+## Refactor
+* Updated the Facebook SDK to 18.0.2 for Android
+* Updated the Facebook SDK to 18.0.0 for iOS
+* Updated the Facebook JavaScript SDK used by the browser platform to v22.0
+* 
 <a name="4.1.2"></a>
 
 ## Refactor
