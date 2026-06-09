@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-fbsdk" version="4.0.2">
+    xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-fbsdk" version="4.0.3">
 
     <name>Facebook Connect</name>
 
@@ -65,8 +65,10 @@
             <queries>
                 <package android:name="com.facebook.katana" />
                 <!-- https://developers.facebook.com/docs/android/troubleshooting/#faq_267321845055988 -->
-                <provider android:authorities="com.facebook.katana.provider.PlatformProvider" /> <!-- allows app to access Facebook app features -->
-                <provider android:authorities="com.facebook.orca.provider.PlatformProvider" /> <!-- allows sharing to Messenger app -->
+                <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
+                <!-- allows app to access Facebook app features -->
+                <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />
+                <!-- allows sharing to Messenger app -->
             </queries>
         </config-file>
 

@@ -1,3 +1,10 @@
+<a name="4.0.3"></a>
+# [4.0.3](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.0.3) (2023-03-28)
+## Bug fix
+
+* iOS: Prefixing swizzling logic to avoid conflicts
+* Android 11: sharing dialog cannot be opened successfully.
+
 <a name="4.0.2"></a>
 # [4.0.2](https://github.com/MaximBelov/cordova-plugin-fbsdk/releases/tag/v4.0.2) (2022-10-12)
 
