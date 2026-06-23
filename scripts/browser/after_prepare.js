@@ -48,8 +48,8 @@ if(process.argv.join("|").indexOf("FACEBOOK_BROWSER_SDK_VERSION=") > -1) {
 }
 
 var files = [
-    "platforms/browser/www/plugins/cordova-plugin-facebook-connect/www/facebook-browser.js",
-    "platforms/browser/platform_www/plugins/cordova-plugin-facebook-connect/www/facebook-browser.js",
+    "platforms/browser/www/plugins/cordova-plugin-fbsdk/www/facebook-browser.js",
+    "platforms/browser/platform_www/plugins/cordova-plugin-fbsdk/www/facebook-browser.js",
     "platforms/browser/www/cordova.js",
     "platforms/browser/platform_www/cordova.js"
 ]
