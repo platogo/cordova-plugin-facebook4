@@ -20,6 +20,7 @@
 @property (nonatomic, assign) FBSDKLoginTracking *loginTracking;
 @property (strong, nonatomic) NSString* gameRequestDialogCallbackId;
 @property (nonatomic, assign) BOOL applicationWasActivated;
+@property (nonatomic, assign) BOOL facebookSDKInitialized;
 
 - (NSDictionary *)loginResponseObject;
 - (NSDictionary *)limitedLoginResponseObject;
@@ -44,6 +45,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                          selector:@selector(handleOpenURLWithAppSourceAndAnnotation:)
                                              name:CDVPluginHandleOpenURLWithAppSourceAndAnnotationNotification object:nil];
+
+    // cordova-ios 8+ moves window/webview setup into UISceneDelegate's
+    // scene:willConnectToSession:options:, which runs *after*
+    // UIApplicationDidFinishLaunchingNotification has already fired. Since
+    // plugins are instantiated as part of that scene connection, the
+    // observer above is registered too late to ever receive that
+    // notification, so FBSDKApplicationDelegate never gets its
+    // didFinishLaunchingWithOptions: call and Settings.shared never gets
+    // configured (even though FacebookAppID is present in Info.plist).
+    // Initialize the SDK directly here as a fallback so login/App ID
+    // validation works regardless of when/whether that notification fires.
+    [self initializeFacebookSDKIfNeeded:[NSDictionary dictionary]];
 }
 
 - (void) applicationDidFinishLaunching:(NSNotification *) notification {
@@ -53,8 +66,20 @@
         launchOptions = [NSDictionary dictionary];
     }
 
+    [self initializeFacebookSDKIfNeeded:launchOptions];
+}
+
+- (void) initializeFacebookSDKIfNeeded:(NSDictionary *)launchOptions {
+    if (self.facebookSDKInitialized) {
+        // Already initialized (e.g. via the didFinishLaunching notification
+        // firing before pluginInitialize's fallback call ran). Avoid a
+        // redundant/duplicate FBSDKApplicationDelegate init call.
+        return;
+    }
+    self.facebookSDKInitialized = YES;
+
     [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
-    
+
     [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
 }
 
