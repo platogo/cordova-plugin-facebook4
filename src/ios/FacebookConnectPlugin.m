@@ -312,7 +312,10 @@
     CDVPluginResult *pluginResult;
     NSArray *permissions = nil;
 
-    if ([command.arguments count] > 0) {
+    // We should not use [command.arguments count] > 0 here,
+    // because that will block users who have a Facebook access token aalready on the device before we pass any permissions.
+    // The reason why is that [command.arguments count] > 0 does not allow and empty array
+    if ([command.arguments isKindOfClass:[NSMutableArray class]]) {
         permissions = command.arguments;
     }
 
