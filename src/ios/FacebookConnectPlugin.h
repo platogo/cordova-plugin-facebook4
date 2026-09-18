@@ -18,7 +18,6 @@
 
 #import <FBSDKGamingServicesKit/FBSDKGamingServicesKit-Swift.h>
 #import <Cordova/CDV.h>
-#import "AppDelegate.h"
 
 @interface FacebookConnectPlugin : CDVPlugin <FBSDKSharingDelegate, FBSDKGameRequestDialogDelegate>
 - (void)getAdvertiserId:(CDVInvokedUrlCommand *)command;

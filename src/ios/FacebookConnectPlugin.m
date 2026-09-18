@@ -1058,9 +1058,9 @@
 @end
 
 
-#pragma mark - AppDelegate Overrides
+#pragma mark - CDVAppDelegate Overrides
 
-@implementation AppDelegate (FacebookConnectPlugin)
+@implementation CDVAppDelegate (FacebookConnectPlugin)
 
 void FBMethodSwizzle(Class c, SEL originalSelector) {
     NSString *selectorString = NSStringFromSelector(originalSelector);
