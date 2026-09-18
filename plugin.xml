@@ -90,7 +90,7 @@
     </platform>
 
     <!-- ios -->
-    <platform name="ios">
+    <platform name="ios" package="swift">
         <js-module src="www/facebook-native.js" name="FacebookConnectPlugin">
             <clobbers target="facebookConnectPlugin" />
         </js-module>
@@ -195,10 +195,10 @@
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="FBSDKCoreKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
-                <pod name="FBSDKLoginKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
-                <pod name="FBSDKShareKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
-                <pod name="FBSDKGamingServicesKit" spec="$FACEBOOK_IOS_SDK_VERSION"/>
+                <pod name="FBSDKCoreKit" spec="$FACEBOOK_IOS_SDK_VERSION"  nospm="true" />
+                <pod name="FBSDKLoginKit" spec="$FACEBOOK_IOS_SDK_VERSION"  nospm="true" />
+                <pod name="FBSDKShareKit" spec="$FACEBOOK_IOS_SDK_VERSION"  nospm="true" />
+                <pod name="FBSDKGamingServicesKit" spec="$FACEBOOK_IOS_SDK_VERSION"  nospm="true" />
             </pods>
         </podspec>
 
